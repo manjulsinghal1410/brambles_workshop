@@ -1,0 +1,51 @@
+customer_id,customer_segment,city,state,registration_date,customer_status,preferred_contact_method,loyalty_tier,churn_risk_score,customer_value_score,satisfaction_score
+100000,Family,New York,IN,2020-02-21,Active,Email,Bronze,6,82,64
+100001,Individual,Mumbai,WA,2020-03-06,Active,Email,Gold,1,82,82
+100002,Family,Mexico City,CO,2023-12-07,Active,Email,Silver,71,64,56
+100003,Family,Sao Paulo,AK,2021-11-27,Active,Email,Platinum,1,92,94
+100004,Individual,Birmingham,ND,2024-10-01,Active,Email,Bronze,49,48,58
+100005,Student,Warsaw,KY,2022-02-14,Active,Email,Gold,50,60,96
+100006,Individual,Bangkok,MA,2020-05-22,Active,Email,Silver,5,61,65
+100007,Individual,Birmingham,CT,2022-07-17,Active,Email,Bronze,19,46,61
+100008,Family,Rotterdam,PA,2020-12-16,Active,Email,Gold,7,100,100
+100009,Individual,Toronto,ND,2021-10-26,Active,Phone,Silver,5,60,84
+100010,Individual,New York,MP,2021-03-08,Inactive,Phone,Platinum,33,92,95
+100011,Individual,Warsaw,AZ,2025-02-15,Active,Email,Bronze,67,47,81
+100012,Individual,Tokyo,CO,2023-04-12,Active,Phone,Bronze,18,52,88
+100013,Individual,Berlin,KY,2020-04-06,Active,Email,Bronze,43,58,90
+100014,Individual,Hanoi,GA,2022-02-20,Active,Email,Silver,39,49,60
+100015,Family,Toronto,UT,2023-01-04,Active,Phone,Bronze,27,70,65
+100016,Individual,Rotterdam,VA,2025-05-07,Active,Phone,Platinum,58,65,91
+100017,Premium,Tokyo,KY,2024-11-17,Active,SMS,Gold,7,100,92
+100018,Family,Berlin,WI,2023-01-09,Suspended,SMS,Platinum,77,97,56
+100019,Individual,Shanghai,MO,2025-03-17,Active,SMS,Gold,25,51,80
+100020,Business,Mexico City,FM,2025-04-23,Active,Phone,Platinum,43,100,70
+100021,Individual,Sydney,MO,2022-08-31,Inactive,Email,Silver,75,61,58
+100022,Premium,Sao Paulo,IA,2024-03-26,Active,Email,Silver,47,100,74
+100023,Individual,New York,MH,2022-11-25,Active,Email,Bronze,9,55,94
+100024,Individual,Stockholm,NY,2021-03-27,Active,Phone,Bronze,4,43,81
+100025,Individual,Paris,VI,2021-05-02,Active,Email,Gold,36,80,99
+100026,Individual,Toronto,PA,2024-05-25,Active,Email,Bronze,62,45,70
+100027,Individual,Mumbai,NC,2022-08-14,Active,Email,Silver,48,51,54
+100028,Individual,Mumbai,TX,2021-11-25,Active,Email,Bronze,37,54,61
+100029,Individual,Madrid,WI,2021-07-24,Active,SMS,Bronze,52,58,56
+100030,Individual,Sydney,GA,2023-01-12,Active,SMS,Platinum,53,74,70
+100031,Individual,Singapore,NY,2022-09-12,Active,Email,Bronze,31,38,78
+100032,Individual,Stockholm,VI,2024-05-24,Active,Email,Silver,66,59,78
+100033,Individual,Sao Paulo,PA,2021-08-30,Active,Email,Platinum,1,81,73
+100034,Individual,Paris,GA,2022-09-03,Active,SMS,Bronze,39,40,64
+100035,Individual,London,DE,2020-05-19,Active,Email,Bronze,56,62,64
+100036,Individual,Stockholm,IA,2020-03-22,Active,Email,Gold,23,75,82
+100037,Individual,Birmingham,CO,2024-01-06,Active,Email,Bronze,61,43,77
+100038,Individual,Manchester,WI,2024-03-19,Inactive,Email,Silver,86,46,47
+100039,Individual,Toronto,OH,2022-11-02,Active,SMS,Gold,54,64,83
+100040,Individual,Warsaw,PA,2022-06-16,Active,Phone,Silver,57,68,82
+100041,Individual,Birmingham,WV,2024-07-31,Active,SMS,Bronze,76,36,61
+100042,Individual,Tokyo,TN,2020-08-07,Active,Email,Silver,13,64,71
+100043,Family,Melbourne,NV,2024-10-12,Active,Email,Platinum,64,82,63
+100044,Family,Berlin,AK,2024-08-25,Active,Email,Gold,50,80,70
+100045,Family,Stockholm,CA,2023-02-03,Active,Phone,Bronze,69,60,81
+100046,Individual,Warsaw,VI,2022-01-26,Active,Email,Bronze,23,50,58
+100047,Business,Bangkok,KY,2021-03-06,Active,Phone,Gold,10,100,100
+100048,Family,Berlin,VA,2025-03-10,Inactive,SMS,Platinum,91,85,78
+100049,Individual,Stockholm,AS,2024-02-17,Inactive,Phone,Silver,92,50,59
