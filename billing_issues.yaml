@@ -1,0 +1,179 @@
+version: 1.1
+source: brambles_demo.agentbricks.billing
+dimensions:
+  - name: payment_status
+    expr: "CASE \n  WHEN status = 'Paid' THEN 'Paid'\n  WHEN status = 'Pending' THEN\
+      \ 'Pending'\n  WHEN status = 'Overdue' THEN 'Overdue'\n  WHEN status = 'Cancelled'\
+      \ THEN 'Cancelled'\n  ELSE 'Unknown'\nEND\n"
+    comment: Categorized payment status for each invoice
+    display_name: Payment Status
+    synonyms:
+      - status
+      - invoice status
+  - name: payment_method
+    expr: payment_method
+    comment: Method used for payment
+    display_name: Payment Method
+    synonyms:
+      - method of payment
+  - name: billing_date
+    expr: CAST(billing_date AS DATE)
+    comment: Date when the invoice was issued
+    display_name: Billing Date
+    format:
+      type: date
+      date_format: year_month_day
+      leading_zeros: false
+    synonyms:
+      - invoice date
+  - name: customer_id
+    expr: customer_id
+    comment: Unique identifier for the customer
+    display_name: Customer ID
+    synonyms:
+      - client id
+  - name: due_category
+    expr: |
+      CASE
+        WHEN DATEDIFF(CAST(due_date AS DATE), CAST(billing_date AS DATE)) <= 7 THEN 'Due Soon'
+        WHEN DATEDIFF(CAST(due_date AS DATE), CAST(billing_date AS DATE)) <= 30 THEN 'Within 30 Days'
+        WHEN DATEDIFF(CAST(due_date AS DATE), CAST(billing_date AS DATE)) > 30 THEN 'Overdue'
+        ELSE 'Unknown'
+      END
+    comment: Categorization based on days until due date
+    display_name: Due Category
+    synonyms:
+      - due status
+  - name: invoice_size_category
+    expr: |
+      CASE
+        WHEN total_amount < 100 THEN 'Small'
+        WHEN total_amount >= 100 AND total_amount < 1000 THEN 'Medium'
+        WHEN total_amount >= 1000 THEN 'Large'
+        ELSE 'Unknown'
+      END
+    comment: Categorization of invoice by total amount
+    display_name: Invoice Size Category
+    synonyms:
+      - invoice size
+measures:
+  - name: total_billed_amount
+    expr: SUM(base_amount + tax_amount)
+    comment: Total amount billed including tax
+    display_name: Total Billed Amount
+    format:
+      type: currency
+      currency_code: USD
+      decimal_places:
+        type: exact
+        places: 2
+      abbreviation: compact
+    synonyms:
+      - billed amount
+      - total invoice value
+  - name: total_invoices
+    expr: COUNT(billing_id)
+    comment: Total number of invoices
+    display_name: Total Invoices
+    format:
+      type: number
+      decimal_places:
+        type: exact
+        places: 0
+    synonyms:
+      - invoice count
+  - name: paid_invoices
+    expr: COUNT(CASE WHEN status = 'Paid' THEN billing_id END)
+    comment: Number of invoices marked as paid
+    display_name: Paid Invoices
+    format:
+      type: number
+      decimal_places:
+        type: exact
+        places: 0
+    synonyms:
+      - paid invoice count
+  - name: overdue_invoices
+    expr: COUNT(CASE WHEN status = 'Overdue' THEN billing_id END)
+    comment: Number of invoices marked as overdue
+    display_name: Overdue Invoices
+    format:
+      type: number
+      decimal_places:
+        type: exact
+        places: 0
+    synonyms:
+      - overdue invoice count
+  - name: total_outstanding_balance
+    expr: "SUM(CASE WHEN status IN ('Pending','Overdue') THEN total_amount ELSE 0\
+      \ END)"
+    comment: Total balance for pending and overdue invoices
+    display_name: Total Outstanding Balance
+    format:
+      type: currency
+      currency_code: USD
+      decimal_places:
+        type: exact
+        places: 2
+      abbreviation: compact
+    synonyms:
+      - outstanding balance
+  - name: average_invoice_value
+    expr: SUM(base_amount + tax_amount) / COUNT(billing_id)
+    comment: Average value of invoices
+    display_name: Average Invoice Value
+    format:
+      type: currency
+      currency_code: USD
+      decimal_places:
+        type: exact
+        places: 2
+      abbreviation: compact
+    synonyms:
+      - average invoice amount
+  - name: average_tax_percentage
+    expr: "(SUM(tax_amount) / NULLIF(SUM(base_amount), 0)) * 100"
+    comment: Average tax as a percentage of base amount
+    display_name: Average Tax Percentage
+    format:
+      type: percentage
+      decimal_places:
+        type: exact
+        places: 2
+    synonyms:
+      - tax rate
+  - name: billing_compliance_rate
+    expr: "(COUNT(CASE WHEN status = 'Paid' THEN 1 END) * 100.0) / NULLIF(COUNT(billing_id),\
+      \ 0)"
+    comment: Percentage of invoices paid
+    display_name: Billing Compliance Rate
+    format:
+      type: percentage
+      decimal_places:
+        type: exact
+        places: 2
+    synonyms:
+      - compliance rate
+  - name: average_days_to_payment
+    expr: "AVG(DATEDIFF(CAST(payment_date AS DATE), CAST(billing_date AS DATE)))"
+    comment: Average number of days from billing to payment
+    display_name: Average Days to Payment
+    format:
+      type: number
+      decimal_places:
+        type: exact
+        places: 1
+    synonyms:
+      - days to payment
+  - name: cancelled_invoices
+    expr: COUNT(CASE WHEN status = 'Cancelled' THEN billing_id END)
+    comment: Number of invoices marked as cancelled
+    display_name: Cancelled Invoices
+    format:
+      type: number
+      decimal_places:
+        type: exact
+        places: 0
+    synonyms:
+      - cancelled invoice count
+
